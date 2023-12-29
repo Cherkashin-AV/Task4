@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1251"> 
+  <title>Coverage Report > DBWriter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ru.vtb.javaCourse.Task4.Writer</a>
+</div>
+
+<h1>Coverage Summary for Class: DBWriter (ru.vtb.javaCourse.Task4.Writer)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DBWriter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96,6%
+  </span>
+  <span class="absValue">
+    (28/29)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ru.vtb.javaCourse.Task4.Writer;
+&nbsp;
+&nbsp;import com.zaxxer.hikari.HikariConfig;
+&nbsp;import com.zaxxer.hikari.HikariConfigMXBean;
+&nbsp;import com.zaxxer.hikari.HikariDataSource;
+&nbsp;import jakarta.persistence.EntityManager;
+&nbsp;import jakarta.persistence.EntityManagerFactory;
+&nbsp;import org.hibernate.SessionFactory;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.context.ApplicationContext;
+&nbsp;import org.springframework.jdbc.datasource.DataSourceUtils;
+&nbsp;import org.springframework.jdbc.datasource.DriverManagerDataSource;
+&nbsp;import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+&nbsp;import org.springframework.orm.jpa.persistenceunit.MutablePersistenceUnitInfo;
+&nbsp;import org.springframework.orm.jpa.persistenceunit.SmartPersistenceUnitInfo;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;import ru.vtb.javaCourse.Task4.Entity.Login;
+&nbsp;import ru.vtb.javaCourse.Task4.Repository.LoginRepo;
+&nbsp;import ru.vtb.javaCourse.Task4.Service.Task4Service;
+&nbsp;
+&nbsp;import javax.sql.DataSource;
+&nbsp;import java.lang.reflect.Field;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;@Component
+<b class="fc">&nbsp;public class DBWriter implements Writable{</b>
+&nbsp;    DataSource dataSource;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    public void setDataSource(DataSource dataSource) {
+<b class="fc">&nbsp;        this.dataSource = dataSource;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    LocalContainerEntityManagerFactoryBean entityManagerFactory;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    public void setEntityManagerFactory(LocalContainerEntityManagerFactoryBean entityManagerFactory) {
+<b class="fc">&nbsp;        this.entityManagerFactory = entityManagerFactory;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    Task4Service service;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    public void setService(Task4Service service) {
+<b class="fc">&nbsp;        this.service = service;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void setDB(Map&lt;String, String&gt; map) {
+<b class="fc">&nbsp;        HikariConfig config = new HikariConfig();</b>
+<b class="fc">&nbsp;        config.setDriverClassName(((HikariDataSource)dataSource).getDriverClassName());</b>
+<b class="fc">&nbsp;        if (map.containsKey(&quot;jdbcurl&quot;)) {</b>
+<b class="fc">&nbsp;            config.setJdbcUrl(map.get(&quot;jdbcurl&quot;));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (map.containsKey(&quot;username&quot;))</b>
+<b class="fc">&nbsp;            config.setUsername(map.get(&quot;username&quot;));</b>
+<b class="fc">&nbsp;        if (map.containsKey(&quot;password&quot;))</b>
+<b class="fc">&nbsp;            config.setPassword(map.get(&quot;password&quot;));</b>
+<b class="fc">&nbsp;        if (map.containsKey(&quot;schema&quot;)) {</b>
+&nbsp;            //config.setSchema(map.get(&quot;schema&quot;));
+<b class="nc">&nbsp;            config.setJdbcUrl(config.getJdbcUrl() + &quot;?currentSchema=&quot; + map.get(&quot;schema&quot;));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        DataSource newDataSource = new HikariDataSource(config);</b>
+<b class="fc">&nbsp;        ((MutablePersistenceUnitInfo) entityManagerFactory.getPersistenceUnitInfo()).setNonJtaDataSource(newDataSource);</b>
+<b class="fc">&nbsp;        entityManagerFactory.setDataSource(newDataSource);</b>
+<b class="fc">&nbsp;        dataSource = newDataSource;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void init(Map dest) {
+<b class="fc">&nbsp;        setDB(dest);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void write(List&lt;Login&gt; logins) {
+<b class="fc">&nbsp;        for (Login login : logins)</b>
+<b class="fc">&nbsp;            service.saveLogin(login);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Map&lt;String, String&gt; buildMap(String jdbcurl, String username, String password){
+<b class="fc">&nbsp;        Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        if (jdbcurl != null)</b>
+<b class="fc">&nbsp;            map.put(&quot;jdbcurl&quot;, jdbcurl);</b>
+<b class="fc">&nbsp;        if (username != null)</b>
+<b class="fc">&nbsp;            map.put(&quot;username&quot;, username);</b>
+<b class="fc">&nbsp;        if (password != null)</b>
+<b class="fc">&nbsp;            map.put(&quot;password&quot;, password);</b>
+<b class="fc">&nbsp;        return map;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-29 16:43</div>
+</div>
+</body>
+</html>

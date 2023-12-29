@@ -1,0 +1,166 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1251"> 
+  <title>Coverage Report > Login</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ru.vtb.javaCourse.Task4.Entity</a>
+</div>
+
+<h1>Coverage Summary for Class: Login (ru.vtb.javaCourse.Task4.Entity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Login</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Login$HibernateAccessOptimizer$1f7qiu6c</td>
+  </tr>
+  <tr>
+    <td class="name">Login$HibernateAccessOptimizer$7PHo93Nj</td>
+  </tr>
+  <tr>
+    <td class="name">Login$HibernateAccessOptimizer$jUvKWffc</td>
+  </tr>
+  <tr>
+    <td class="name">Login$HibernateInstantiator$cfPnDU8q</td>
+  </tr>
+  <tr>
+    <td class="name">Login$HibernateInstantiator$HtUL7qXK</td>
+  </tr>
+  <tr>
+    <td class="name">Login$HibernateInstantiator$lp0n5QSG</td>
+  </tr>
+  <tr>
+    <td class="name">Login$HibernateProxy$Cl4qM7OC</td>
+  </tr>
+  <tr>
+    <td class="name">Login$HibernateProxy$oZT9v8hr</td>
+  </tr>
+  <tr>
+    <td class="name">Login$HibernateProxy$RCyKxjl5</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ru.vtb.javaCourse.Task4.Entity;
+&nbsp;
+&nbsp;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import lombok.*;
+&nbsp;
+&nbsp;import javax.print.DocFlavor;
+&nbsp;import java.sql.Date;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;
+&nbsp;@Entity
+<b class="fc">&nbsp;@AllArgsConstructor</b>
+<b class="fc">&nbsp;@NoArgsConstructor</b>
+<b class="fc">&nbsp;@Data</b>
+&nbsp;@Table(name = &quot;logins&quot;)
+<b class="nc">&nbsp;@ToString</b>
+<b class="fc">&nbsp;@EqualsAndHashCode</b>
+&nbsp;public class Login {
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+<b class="fc">&nbsp;    Integer id;</b>
+&nbsp;    @Temporal(TemporalType.TIMESTAMP)
+<b class="fc">&nbsp;    LocalDateTime access_data;</b>
+&nbsp;    @ManyToOne
+&nbsp;    @JoinColumn(name = &quot;user_id&quot;)
+<b class="fc">&nbsp;    User    user;</b>
+<b class="fc">&nbsp;    String  application;</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-29 16:43</div>
+</div>
+</body>
+</html>

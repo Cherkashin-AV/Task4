@@ -1,0 +1,14 @@
+16:44:09.511 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+16:44:13.224 [main] WARN  r.v.j.Task4.Converters.DateConverter - Запуск метода proxy-объекта. Класс: class ru.vtb.javaCourse.Task4.Converters.FIOConverter, метод: covert
+16:44:13.225 [main] WARN  r.v.j.Task4.Converters.DateConverter - Метод выполнен. Класс: class ru.vtb.javaCourse.Task4.Converters.FIOConverter, метод: covert
+16:44:13.225 [main] WARN  r.v.j.Task4.Converters.DateConverter - Запуск метода proxy-объекта. Класс: class ru.vtb.javaCourse.Task4.Converters.FIOConverter, метод: getNext
+16:44:13.226 [main] WARN  r.v.j.Task4.Converters.DateConverter - Метод выполнен. Класс: class ru.vtb.javaCourse.Task4.Converters.FIOConverter, метод: getNext
+16:44:13.226 [main] WARN  r.v.j.Task4.Converters.DateConverter - Запуск метода proxy-объекта. Класс: class ru.vtb.javaCourse.Task4.Converters.DateConverter, метод: covert
+16:44:13.226 [main] WARN  r.v.j.Task4.Converters.DateConverter - Аргументы: 
+16:44:13.227 [main] WARN  r.v.j.Task4.Converters.DateConverter - 	source: Коллекция [5 элемента]
+16:44:13.228 [main] WARN  r.v.j.Task4.Converters.DateConverter - ==========
+16:44:13.228 [main] WARN  r.v.j.Task4.Converters.DateConverter - Пустая дата!
+16:44:13.228 [main] WARN  r.v.j.Task4.Converters.DateConverter - Метод выполнен. Класс: class ru.vtb.javaCourse.Task4.Converters.DateConverter, метод: covert
+16:44:13.228 [main] WARN  r.v.j.Task4.Converters.DateConverter - 	 Результат: Коллекция [4 элемента]
+16:44:13.228 [main] WARN  r.v.j.Task4.Converters.DateConverter - Запуск метода proxy-объекта. Класс: class ru.vtb.javaCourse.Task4.Converters.DateConverter, метод: getNext
+16:44:13.228 [main] WARN  r.v.j.Task4.Converters.DateConverter - Метод выполнен. Класс: class ru.vtb.javaCourse.Task4.Converters.DateConverter, метод: getNext

@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1251"> 
+  <title>Coverage Report > Task4Service</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ru.vtb.javaCourse.Task4.Service</a>
+</div>
+
+<h1>Coverage Summary for Class: Task4Service (ru.vtb.javaCourse.Task4.Service)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Task4Service</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Task4Service$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ru.vtb.javaCourse.Task4.Service;
+&nbsp;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;import ru.vtb.javaCourse.Task4.Entity.Login;
+&nbsp;import ru.vtb.javaCourse.Task4.Entity.User;
+&nbsp;import ru.vtb.javaCourse.Task4.Repository.LoginRepo;
+&nbsp;import ru.vtb.javaCourse.Task4.Repository.UserRepo;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;@Component
+<b class="fc">&nbsp;public class Task4Service {</b>
+&nbsp;    UserRepo userRepo;
+&nbsp;    LoginRepo loginRepo;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    public void setUserRepo(UserRepo userRepo) {
+<b class="fc">&nbsp;        this.userRepo = userRepo;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    public void setLoginRepo(LoginRepo loginRepo) {
+<b class="fc">&nbsp;        this.loginRepo = loginRepo;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Map&lt;String, Integer&gt; getUserList() {
+<b class="fc">&nbsp;        return new HashMap&lt;&gt;(userList);</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    Map&lt;String, Integer&gt; userList = new HashMap();</b>
+&nbsp;    public User getUser(User user){
+<b class="fc">&nbsp;        Integer cachedId = userList.get(user.getUserName());</b>
+<b class="fc">&nbsp;        if (cachedId==null){</b>
+<b class="fc">&nbsp;            cachedId = userRepo.findIdByUserName(user.getUserName());</b>
+&nbsp;            //Нет в кэше, но есть в БД - сохраняем в кэш
+<b class="fc">&nbsp;            if (cachedId==null) {</b>
+<b class="fc">&nbsp;                userRepo.save(user);</b>
+<b class="fc">&nbsp;                cachedId = user.getId();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            userList.put(user.getUserName(), cachedId);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        user.setId(cachedId);</b>
+<b class="fc">&nbsp;        return user;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    public void saveLogin(Login login){
+<b class="fc">&nbsp;        login.setUser(getUser(login.getUser()));</b>
+<b class="fc">&nbsp;        loginRepo.save(login);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-29 16:43</div>
+</div>
+</body>
+</html>

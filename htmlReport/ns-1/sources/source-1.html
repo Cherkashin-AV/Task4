@@ -1,0 +1,191 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1251"> 
+  <title>Coverage Report > DataBaseConfig</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ru.vtb.javaCourse.Task4</a>
+</div>
+
+<h1>Coverage Summary for Class: DataBaseConfig (ru.vtb.javaCourse.Task4)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DataBaseConfig</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">DataBaseConfig$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ru.vtb.javaCourse.Task4;
+&nbsp;
+&nbsp;import org.springframework.beans.factory.annotation.Value;
+&nbsp;import org.springframework.context.annotation.Configuration;
+&nbsp;import org.springframework.context.annotation.PropertySource;
+&nbsp;
+&nbsp;//@RefreshScope
+&nbsp;@Configuration
+&nbsp;@PropertySource(&quot;classpath:bd.properties&quot;)
+<b class="fc">&nbsp;public class DataBaseConfig {</b>
+&nbsp;
+&nbsp;    @Value(&quot;${postgres.driver}&quot;)
+&nbsp;    private String driverClassName;
+&nbsp;    @Value(&quot;${postgres.url}&quot;)
+&nbsp;    private String dataBaseUrl;
+&nbsp;    @Value(&quot;${postgres.username}&quot;)
+&nbsp;    private String username;
+&nbsp;    @Value(&quot;${postgres.password}&quot;)
+&nbsp;    private String password;
+&nbsp;
+&nbsp;//    @Bean
+&nbsp;//    public DataSource dataSource() {
+&nbsp;//        HikariConfig config = new HikariConfig();
+&nbsp;//        config.setDriverClassName(driverClassName);
+&nbsp;//        config.setJdbcUrl(dataBaseUrl);
+&nbsp;//        config.setUsername(username);
+&nbsp;//        config.setPassword(password);
+&nbsp;//        HikariDataSource dataSource = new HikariDataSource(config);
+&nbsp;//
+&nbsp;//        return dataSource;
+&nbsp;//    }
+&nbsp;//
+&nbsp;//
+&nbsp;//
+&nbsp;//    @Bean
+&nbsp;//    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+&nbsp;//        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+&nbsp;//        factoryBean.setDataSource(dataSource());
+&nbsp;//        factoryBean.setPersistenceUnitName(&quot;TDPersistenceUnit&quot;);
+&nbsp;//        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+&nbsp;//        adapter.setShowSql(true);
+&nbsp;//        adapter.setGenerateDdl(false);
+&nbsp;//        adapter.setDatabasePlatform(&quot;org.hibernate.dialect.H2Dialect&quot;);
+&nbsp;//        factoryBean.setJpaVendorAdapter(adapter);
+&nbsp;//        factoryBean.setPackagesToScan(&quot;ru.vtb.javaCourse.Task4.Entity&quot;);
+&nbsp;//        Properties jpaProp = new Properties();
+&nbsp;//        jpaProp.put(&quot;hibernate.dialect&quot;, &quot;org.hibernate.dialect.H2Dialect&quot;);
+&nbsp;//        jpaProp.put(&quot;hibernate.query.factory_class&quot;, &quot;org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory&quot;);
+&nbsp;//        jpaProp.put(&quot;hibernate.hbm2ddl.auto&quot;, &quot;update&quot;);
+&nbsp;//        jpaProp.put(&quot;hibernate.show_sql&quot;, Boolean.parseBoolean(&quot;true&quot;));
+&nbsp;//        jpaProp.put(&quot;hibernate.connection.charset&quot;, &quot;UTF-8&quot;);
+&nbsp;//        jpaProp.put(&quot;hibernate.connection.release_mode&quot;, &quot;auto&quot;);
+&nbsp;//        //jpaProp.put(&quot;javax.persistence.validation.mode&quot;, &quot;callback&quot;);
+&nbsp;//        factoryBean.setJpaProperties(jpaProp);
+&nbsp;//
+&nbsp;//        Map&lt;String, Object&gt; jpaPropertyMap = new HashMap&lt;&gt;();
+&nbsp;////        jpaPropertyMap.put(&quot;javax.persistence.validation.factory&quot;, localValidatorFactoryBean());
+&nbsp;////        jpaPropertyMap.put(&quot;javax.persistence.validation.group.pre-persist&quot;, &quot;com.td.model.validation.group.PrePersistGroup,javax.validation.groups.Default&quot;);
+&nbsp;//        jpaPropertyMap.put(&quot;hibernate.physical_naming_strategy&quot;, &quot;org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy&quot;);
+&nbsp;//        jpaPropertyMap.put(&quot;hibernate.cdi.extensions&quot;,&quot;true&quot;);
+&nbsp;//        jpaPropertyMap.put(&quot;hibernate.implicit_naming_strategy&quot;,&quot;org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy&quot;);
+&nbsp;//        jpaPropertyMap.put(&quot;hibernate.archive.scanner&quot;,&quot;org.hibernate.boot.archive.scan.internal.DisabledScanner&quot;);
+&nbsp;//        factoryBean.setJpaPropertyMap(jpaPropertyMap);
+&nbsp;//        return factoryBean;
+&nbsp;//
+&nbsp;//    }
+&nbsp;//
+&nbsp;//    @Bean
+&nbsp;//    public PlatformTransactionManager transactionManager() {
+&nbsp;//
+&nbsp;//        JpaTransactionManager transactionManager
+&nbsp;//                = new JpaTransactionManager();
+&nbsp;//        transactionManager.setEntityManagerFactory(
+&nbsp;//                entityManagerFactory().getObject());
+&nbsp;//        return transactionManager;
+&nbsp;//    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-29 16:43</div>
+</div>
+</body>
+</html>
