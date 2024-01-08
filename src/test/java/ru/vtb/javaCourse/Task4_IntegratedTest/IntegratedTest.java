@@ -1,6 +1,5 @@
 package ru.vtb.javaCourse.Task4_IntegratedTest;
 
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,20 +7,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import ru.vtb.javaCourse.Task4.Converters.DateConverter;
 import ru.vtb.javaCourse.Task4.LogAnalizer;
-import ru.vtb.javaCourse.Task4.Repository.LoginRepo;
-import ru.vtb.javaCourse.Task4.Repository.UserRepo;
+import ru.vtb.javaCourse.Task4.Service.Task4Service;
 import ru.vtb.javaCourse.Task4.Task4Application;
-import ru.vtb.javaCourse.Task4.Writer.DBWriter;
 
-import javax.sql.DataSource;
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest(classes = {Task4Application.class})
@@ -38,9 +32,7 @@ public class IntegratedTest {
 
 
     @Autowired
-    UserRepo userRepo;
-    @Autowired
-    LoginRepo loginRepo;
+    Task4Service service;
 
     @Test
     public void fullTest() throws SQLException  {
@@ -48,7 +40,7 @@ public class IntegratedTest {
         logAnalizer.setDBConnection(jdbcurl, username, password);
 
         //Количество записей в БД
-        long loginDBCountBefore = loginRepo.count();
+        long loginDBCountBefore = service.getLoginCount();
         //Количество записей для обработки
         int recordCount = 0;
         try {
@@ -71,7 +63,7 @@ public class IntegratedTest {
 
         //Считываем состояние после выполнения
         //Общее количество записей в БД
-        long loginDBCountAfter = loginRepo.count();
+        long loginDBCountAfter = service.getLoginCount();
         Assertions.assertTrue(loginDBCountAfter>loginDBCountBefore, "Не вставлены записи в БД");
         //Количество записей с пустой датой, они в базу не записаны. Будем искать в логе.
         long loginWithError = recordCount - (loginDBCountAfter - loginDBCountBefore);

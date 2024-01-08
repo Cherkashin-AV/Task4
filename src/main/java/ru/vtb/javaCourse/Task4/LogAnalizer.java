@@ -7,7 +7,7 @@ import ru.vtb.javaCourse.Task4.Converters.Convertable;
 import ru.vtb.javaCourse.Task4.Entity.Login;
 import ru.vtb.javaCourse.Task4.Reader.FileReader;
 import ru.vtb.javaCourse.Task4.Reader.Readable;
-import ru.vtb.javaCourse.Task4.Writer.DBWriter;
+import ru.vtb.javaCourse.Task4.Service.Task4Service;
 import ru.vtb.javaCourse.Task4.Writer.Writable;
 
 import java.nio.charset.Charset;
@@ -49,6 +49,6 @@ public class LogAnalizer {
     }
 
     public void setDBConnection(String jdbcurl, String username, String password){
-        writer.init(DBWriter.buildMap(jdbcurl, username, password));
+        writer.init(Task4Service.buildMap(jdbcurl, username, password));
     }
 }

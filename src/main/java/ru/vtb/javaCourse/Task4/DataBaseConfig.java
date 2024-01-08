@@ -3,9 +3,11 @@ package ru.vtb.javaCourse.Task4;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 //@RefreshScope
 @Configuration
+@EnableTransactionManagement
 @PropertySource("classpath:bd.properties")
 public class DataBaseConfig {
 
@@ -17,6 +19,18 @@ public class DataBaseConfig {
     private String username;
     @Value("${postgres.password}")
     private String password;
+
+//    @Bean
+//    DataSource getDataSource(){
+//        DataSource pgDS = DataSourceBuilder.create().
+//                driverClassName("org.postgresql.Driver")
+//                .url("jdbc:postgresql://localhost:5432/postgres?currentSchema=public")
+//                .username("postgres")
+//                .password("postgres")
+//                .build();
+//        return pgDS;
+//    }
+
 
 //    @Bean
 //    public DataSource dataSource() {
