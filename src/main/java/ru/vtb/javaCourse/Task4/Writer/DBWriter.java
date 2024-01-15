@@ -11,14 +11,12 @@ import java.util.Map;
 @Component
 public class DBWriter implements Writable{
 
-    Task4Service service;
+    private Task4Service service;
 
     @Autowired
-    public void setService(Task4Service service) {
+    public DBWriter(Task4Service service) {
         this.service = service;
     }
-
-
 
     @Override
     public void init(Map dest) {

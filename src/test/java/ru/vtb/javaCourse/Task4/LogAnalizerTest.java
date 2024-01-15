@@ -18,7 +18,7 @@ class LogAnalizerTest {
 
     @Test
     public void testLogAnalizer(){
-        Convertable converter =  analizer.converter;
+        Convertable converter =  analizer.getConverter();
         Assertions.assertTrue(converter.getRealClass() == FIOConverter.class, converter.getClass().getName());
         converter = converter.getNext();
         Assertions.assertTrue(converter.getRealClass() == ApplicationConverter.class, converter.getClass().getName());

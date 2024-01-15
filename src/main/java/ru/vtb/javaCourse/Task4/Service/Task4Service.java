@@ -19,33 +19,27 @@ import java.util.Map;
 
 @Component
 public class Task4Service {
-    UserRepo userRepo;
-    LoginRepo loginRepo;
+    private UserRepo userRepo;
+    private LoginRepo loginRepo;
+    private DataSource dataSource;
+    private LocalContainerEntityManagerFactoryBean entityManagerFactory;
 
     @Autowired
-    public void setUserRepo(UserRepo userRepo) {
+    public Task4Service(UserRepo userRepo, LoginRepo loginRepo) {
         this.userRepo = userRepo;
-    }
-
-    @Autowired
-    public void setLoginRepo(LoginRepo loginRepo) {
         this.loginRepo = loginRepo;
     }
-
-    DataSource dataSource;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    LocalContainerEntityManagerFactoryBean entityManagerFactory;
-
+    //Конструктор сделан не на все поля, т.к. переподключение БД в rumtime реализовано как не обязательная опция
     @Autowired
     public void setEntityManagerFactory(LocalContainerEntityManagerFactoryBean entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
     }
-
 
     public Map<String, Integer> getUserList() {
         return new HashMap<>(userList);

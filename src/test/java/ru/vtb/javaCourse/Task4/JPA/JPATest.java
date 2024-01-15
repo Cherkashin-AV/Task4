@@ -52,9 +52,7 @@ class JPATest {
     @Test
     @DisplayName("Тестирование сервиса DataJpa")
     public void testService(){
-        Task4Service service = new Task4Service();
-        service.setLoginRepo(loginRepo);
-        service.setUserRepo(userRepo);
+        Task4Service service = new Task4Service(userRepo, loginRepo);
         Map serviceCache;
 
         User user1 = new User(null, "UserName1", "FIO1");
@@ -92,12 +90,9 @@ class JPATest {
     @Test
     @DisplayName("Тестирование DBWriter")
     void testDBWriter(){
-        Task4Service service = new Task4Service();
-        service.setLoginRepo(loginRepo);
-        service.setUserRepo(userRepo);
+        Task4Service service = new Task4Service(userRepo, loginRepo);
 
-        DBWriter dbWriter = new DBWriter();
-        dbWriter.setService(service);
+        DBWriter dbWriter = new DBWriter(service);
 
         long loginCnt = loginRepo.count();
         long userCnt = userRepo.count();

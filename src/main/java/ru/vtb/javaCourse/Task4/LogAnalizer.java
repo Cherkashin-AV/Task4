@@ -15,23 +15,19 @@ import java.util.List;
 
 @Component
 public class LogAnalizer {
-    Readable fileReader;
+    private Readable fileReader;
+    private Convertable converter;
+    private Writable writer;
+
     @Autowired
-    public void setFileReader(Readable fileReader) {
+    public LogAnalizer(Readable fileReader, @Qualifier("FirstConverter") Convertable converter, Writable writer) {
         this.fileReader = fileReader;
-    }
-
-    Convertable converter;
-    @Autowired
-    @Qualifier("FirstConverter")
-    public void setConverter(Convertable converter) {
         this.converter = converter;
+        this.writer = writer;
     }
 
-    Writable writer;
-    @Autowired
-    public void setWriter(Writable writer) {
-        this.writer = writer;
+    public Convertable getConverter() {
+        return converter;
     }
 
     public void analize(String source){
