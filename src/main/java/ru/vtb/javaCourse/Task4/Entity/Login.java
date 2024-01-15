@@ -18,11 +18,11 @@ import java.time.LocalDateTime;
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @Temporal(TemporalType.TIMESTAMP)
-    LocalDateTime access_data;
+    private LocalDateTime access_data;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    User    user;
-    String  application;
+    private User    user;
+    private String  application;
 }

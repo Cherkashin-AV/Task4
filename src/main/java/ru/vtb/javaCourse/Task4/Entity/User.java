@@ -12,8 +12,8 @@ import lombok.*;
 @EqualsAndHashCode
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @Column(name = "username")
-    String  userName;
-    String  fio;
+    private String  userName;
+    private String  fio;
 }
